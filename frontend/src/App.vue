@@ -4,14 +4,15 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 
-export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
+  import PouchDB from 'pouchdb';
+  
+  const db = new PouchDB('local-db');
+
+  db.info().then((info) => {
+    console.log(info);
+  })
+
 </script>
 
 <style>
