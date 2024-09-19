@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import database from "../services/database";
-import { v4 as uuidv4 } from 'uuid';
 
 export class ProductController {
 
@@ -31,7 +30,19 @@ export class ProductController {
 
     // GET BY ID product
     public static async findOne(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const product = await database.get(id)
 
+            res.status(200).json(product);
+        } catch (error) {
+            if (error instanceof Error && 'status' in error && error.status == 404) {
+                res.status(404).json("Produto não encontrado.");
+            }
+            else {
+                res.status(500).json({ message: "Erro ao buscar um produto: ", error })
+            }           
+        }
     }
 
     // POST product
@@ -47,13 +58,12 @@ export class ProductController {
 
 
             const newProduct = {
-                _id: uuidv4(),
                 name,
                 price,
                 stock
             };
 
-            const result = await database.put(newProduct);
+            const result = await database.post(newProduct);
             res.status(201).json(result);
 
         } catch (error) {
@@ -63,7 +73,26 @@ export class ProductController {
 
     // UPDATE product
     public static async update(req: Request, res: Response) {
+        try {
+            const productId = req.params.id;
+            const { name, price, stock, force } = req.body;
+            
+            const currentProduct = await database.get(productId);
 
+            const updatedProduct = {
+                ...currentProduct,
+            }
+
+            const product = await database.get(productId);
+            
+        } catch (error) {
+            if (error instanceof Error && 'status' in error && error.status == 404) {
+                res.status(404).json("Produto não encontrado.");
+            }
+            else {
+                res.status(500).json({ message: "Erro ao atualizar um produto: ", error })
+            }
+        }
     }
 
     // DELETE product
