@@ -1,18 +1,20 @@
+/* eslint-disable prettier/prettier */
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <h1>Hello World</h1>
+    <ProductList/>
+  </div>
 </template>
 
 <script>
+  import ProductList from './components/ProductList.vue';
 
-  import PouchDB from 'pouchdb';
-  
-  const db = new PouchDB('local-db');
-
-  db.info().then((info) => {
-    console.log(info);
-  })
-
+  export default {
+    name: "App",
+    components: {
+      ProductList
+    }
+  }
 </script>
 
 <style>
