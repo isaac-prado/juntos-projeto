@@ -1,7 +1,7 @@
 */ eslint-disable prettier/prettier /*
 <template>
     <div>
-      <h1>Lista de Produtos</h1>
+      <h2>Lista de Produtos</h2>
       <ul>
         <li v-for="product in products" :key="product._id">
           Produto:{{ product.name }} - ${{ product.price }} - Estoque:{{ product.stock }}
@@ -20,7 +20,7 @@
         products: []
       };
     },
-    created() {
+    mounted() {
       this.fetchProducts();
     },
     methods: {
@@ -36,3 +36,15 @@
     }
   };
   </script>
+
+  <style>
+    h2 {
+      text-align: center;
+      font-size: xx-large;
+    }
+
+    ul {
+      text-align: center;
+      list-style-type: none;
+    }
+  </style>
