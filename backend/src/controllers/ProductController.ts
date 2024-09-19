@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import database from "../services/database";
+import Product from "../interface/Product";
 
 export class ProductController {
 
@@ -72,19 +73,25 @@ export class ProductController {
     }
 
     // UPDATE product
+    
     public static async update(req: Request, res: Response) {
         try {
             const productId = req.params.id;
-            const { name, price, stock, force } = req.body;
+            const { name, price, stock } = req.body;
             
-            const currentProduct = await database.get(productId);
+            const currentProduct = await database.get<Product>(productId);
+
 
             const updatedProduct = {
                 ...currentProduct,
+                name: name ?? currentProduct.name,
+                price: price ?? currentProduct.price,
+                stock: stock ?? currentProduct.stock
             }
 
-            const product = await database.get(productId);
-            
+            const result = await database.put(updatedProduct);
+            return res.status(200).json({ message: "Produto atualizado com sucesso: ", result});
+
         } catch (error) {
             if (error instanceof Error && 'status' in error && error.status == 404) {
                 res.status(404).json("Produto não encontrado.");
@@ -94,6 +101,7 @@ export class ProductController {
             }
         }
     }
+        
 
     // DELETE product
     public static async delete(req: Request, res: Response) {
