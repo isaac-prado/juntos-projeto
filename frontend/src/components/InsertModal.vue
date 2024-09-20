@@ -2,7 +2,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <header class="modal-header">
-            
+
           <slot name="header">
             Inserir Produto
           </slot>
@@ -136,8 +136,8 @@ export default {
   }
 
   .modal-body {
-    position: relative;
-    padding: 7rem;
+    position: flex;
+    padding: 2rem 5rem;
     color: black;
   }
 
@@ -150,6 +150,12 @@ export default {
     padding: 8px;
     margin-top: 5px;
     box-sizing: border-box;
+  }
+
+  form button {
+    align-items: center;
+    justify-items: center;
+    margin-top: 15px;
   }
 
   .btn-close, .btn-insert {

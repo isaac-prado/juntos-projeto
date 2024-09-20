@@ -51,9 +51,9 @@
 
 <style>
 
-body, #app {
-  background-color: #793df0;
-  color: white;
+html, body, #app {
+  background: linear-gradient(0deg, #793df0, #150d3d);;
+  color: black;
   margin: 0;
   padding: 0; 
   height: 100%;
@@ -62,6 +62,7 @@ body, #app {
 
 #top {
   background-color: #150d3d;
+  color: white;
   padding: 10px;
   display: flex;
   align-items: center;
