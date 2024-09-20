@@ -41,7 +41,7 @@
 </template>
   
   <script>
-  import { api } from '@/services/api.ts';
+  import { api } from "@/services/api.ts";
   
   export default {
     name: "ProductList",
@@ -51,7 +51,7 @@
         page: 1,
         limit: 10,
         totalProducts: 0,
-        filterName: ''
+        filterName: ""
       };
     },
     computed: {

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import InsertModal from './components/InsertModal.vue';
+  import InsertModal from "./components/InsertModal.vue";
 
   export default {
     name: "App",

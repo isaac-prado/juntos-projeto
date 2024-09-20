@@ -9,7 +9,7 @@ export class ProductController {
         try {
             const limit = parseInt(req.query.limit as string) || 10;
             const page = parseInt(req.query.page as string) || 1;
-            const nameFilter = req.query.name as string || '';
+            const nameFilter = req.query.name as string || "";
 
             const skip = (page - 1) * limit;
             const result = await database.allDocs({ include_docs: true });
@@ -44,7 +44,7 @@ export class ProductController {
 
             res.status(200).json(product);
         } catch (error) {
-            if (error instanceof Error && 'status' in error && error.status == 404) {
+            if (error instanceof Error && "status" in error && error.status == 404) {
                 res.status(404).json("Produto não encontrado.");
             }
             else {
@@ -99,7 +99,7 @@ export class ProductController {
             return res.status(200).json({ message: "Produto atualizado com sucesso: ", result});
 
         } catch (error) {
-            if (error instanceof Error && 'status' in error && error.status == 404) {
+            if (error instanceof Error && "status" in error && error.status == 404) {
                 res.status(404).json("Produto não encontrado.");
             }
             else {
@@ -119,7 +119,7 @@ export class ProductController {
 
             res.status(200).json({ message: "Produto deletado com sucesso.", product});
         } catch (error) {
-            if (error instanceof Error && 'status' in error && error.status == 404) {
+            if (error instanceof Error && "status" in error && error.status == 404) {
                 res.status(404).json("Produto não encontrado.");
             }
             else {

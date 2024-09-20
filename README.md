@@ -9,7 +9,7 @@ Um sistema para gerenciar produtos, permitindo a visualização, adição, atual
 
 O sistema foi desenvolvido para o Processo Seletivo da Juntos Energia, agradeço desde já a oportunidade.
 
-![Juntos Energia](./frontend/src/assets/logo.png.webp)
+![Juntos Energia](https://juntosenergia.com.br/wp-content/webp-express/webp-images/themes/zygon-juntos/res/img/assets/logo.png.webp)
 
 Sem dúvidas minha maior dificuldade foi utilizar novas tecnologias como Vue, pois nunca tinha utilizado esse framework anteriormente, o que rendeu algumas horas na documentação e muito aprendizado, e o PouchDB, que apesar de simples, complica algumas rotas, principalmente a de PUT por conta do atributo _rev.
 

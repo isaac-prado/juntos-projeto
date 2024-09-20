@@ -66,7 +66,7 @@
   </template>
 
 <script>
-import { api } from '@/services/api.ts';
+import { api } from "@/services/api.ts";
 
 export default {
     name: "InsertModal",
@@ -83,14 +83,14 @@ export default {
         },
         async addProduct() {
             try {
-                const response = await api.post('/products', {
+                const response = await api.post("/products", {
                     name: this.name,
                     price: this.price,
                     stock: this.stock
                 })
                 alert("Produto adicionado com sucesso!\nAtualize a Página.");
 
-                this.$emit('product-added', response.data);
+                this.$emit("product-added", response.data);
                 this.close();
             } catch (error) {
                 console.error("Erro ao adicionar Produto: ", error);

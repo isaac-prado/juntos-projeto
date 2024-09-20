@@ -41,14 +41,14 @@
   </template>
   
   <script>
-  import { api } from '@/services/api.ts';
+  import { api } from "@/services/api.ts";
   
   export default {
-    props: ['_id'],
+    props: ["_id"],
     data() {
       return {
         product: {
-          name: '',
+          name: "",
           price: 0,
           stock: 0
         }
@@ -67,7 +67,7 @@
         try {
           await api.put(`/products/${this._id}`, this.product);
           alert("Produto atualizado com sucesso!");
-          this.$router.push('/products');
+          this.$router.push("/products");
         } catch (error) {
           console.error("Erro ao atualizar o produto:", error);
           alert("Erro ao atualizar o produto.");
@@ -77,7 +77,7 @@
         try {
           await api.delete(`/products/${this._id}`);
           alert("Produto deletado com sucesso!");
-          this.$router.push('/products');
+          this.$router.push("/products");
         } catch (error) {
           console.error("Erro ao deletar o produto:", error);
           alert("Erro ao deletar o produto.");
