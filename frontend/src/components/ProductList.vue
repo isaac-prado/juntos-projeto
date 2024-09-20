@@ -12,14 +12,20 @@
         </thead>
 
         <tbody>
-          <tr v-for="product in products" :key="product.id">
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock }}</td>
+          <tr v-for="product in products" :key="product._id">
+            <td><router-link :to="`/products/${product._id}`">{{ product.name }}</router-link></td>
+            <td><router-link :to="`/products/${product._id}`">R${{ product.price }}</router-link></td>
+            <td><router-link :to="`/products/${product._id}`">{{ product.stock }}</router-link></td>
           </tr>
         </tbody>
-
       </table>
+
+      <div class="pagination">
+        <button @click="prevPage" :disabled="page <= 1">Anterior</button>
+        <span>Página {{ page }} de {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="page >= totalPages">Próxima</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -31,23 +37,49 @@
     name: "ProductList",
     data() {
       return {
-        products: []
+        products: [],
+        page: 1,
+        limit: 10,
+        totalProducts: 0,
       };
     },
-    mounted() {
-      this.fetchProducts();
+    computed: {
+      totalPages() {
+        return Math.ceil(this.totalProducts / this.limit);
+      }
     },
     methods: {
       async fetchProducts() {
         try {
-          const response = await api.get("/products");
-          console.log("Dados recebidos: ", response.data)
+          const response = await api.get("/products", {
+            params: {
+              page: this.page,
+              limit: this.limit
+            }
+          });
           this.products = response.data.products;
+          this.totalProducts = response.data.meta.total;
+          console.log("Dados recebidos: ", response.data)
         } catch (error) {
           console.error("Erro ao buscar produtos:", error);
         }
+      },
+      nextPage() {
+        if (this.page < this.totalPages) {
+          this.page += 1;
+          this.fetchProducts();
+        }
+      },
+      prevPage() {
+        if (this.page > 1) {
+          this.page -= 1;
+          this.fetchProducts();
+        }
       }
-    }
+    },
+    mounted() {
+      this.fetchProducts();
+    },
   };
   </script>
 
@@ -56,6 +88,7 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
+    text-align: center
   }
 
   .product-table-container {
@@ -96,5 +129,19 @@
 
   .product-table td {
     font-size: 16px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination button {
+    margin-inline: 0;
+  }
+
+  .pagination span {
+    margin: 20px;
   }
 </style>

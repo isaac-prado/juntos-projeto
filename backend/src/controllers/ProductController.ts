@@ -81,7 +81,6 @@ export class ProductController {
             
             const currentProduct = await database.get<Product>(productId);
 
-
             const updatedProduct = {
                 ...currentProduct,
                 name: name ?? currentProduct.name,

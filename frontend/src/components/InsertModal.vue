@@ -35,7 +35,7 @@
                     type="number"
                     id="price"
                     required
-                    min="1"
+                    min="0.01"
                     step="0.01"
                     />
                 </div>
@@ -47,7 +47,8 @@
                     type="number"
                     id="stock"
                     required
-                    min="0"
+                    min="1"
+                    step="1"
                     />
                 </div>
 
@@ -87,7 +88,7 @@ export default {
                     price: this.price,
                     stock: this.stock
                 })
-                alert("Produto adicionado com sucesso!");
+                alert("Produto adicionado com sucesso!\nAtualize a Página.");
 
                 this.$emit('product-added', response.data);
                 this.close();
