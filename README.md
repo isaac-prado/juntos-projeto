@@ -2,9 +2,14 @@
 
 Um sistema para gerenciar produtos, permitindo a visualização, adição, atualização e exclusão de produtos. O sistema inclui funcionalidades de busca e paginação.
 
+![Imagem Exemplo do Sistema](./frontend/public/image.png)
+
+
 ## Desafios Pessoais no Desenvolvimento
 
 O sistema foi desenvolvido para o Processo Seletivo da Juntos Energia, agradeço desde já a oportunidade.
+
+![Juntos Energia](./frontend/src/assets/logo.png.webp)
 
 Sem dúvidas minha maior dificuldade foi utilizar novas tecnologias como Vue, pois nunca tinha utilizado esse framework anteriormente, o que rendeu algumas horas na documentação e muito aprendizado, e o PouchDB, que apesar de simples, complica algumas rotas, principalmente a de PUT por conta do atributo _rev.
 
