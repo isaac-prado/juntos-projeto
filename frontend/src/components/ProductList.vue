@@ -24,7 +24,7 @@
         <tbody>
           <tr v-for="product in products" :key="product._id">
             <td><router-link :to="`/products/${product._id}`">{{ product.name }}</router-link></td>
-            <td><router-link :to="`/products/${product._id}`">R${{ product.price }}</router-link></td>
+            <td><router-link :to="`/products/${product._id}`">{{ formatPrice(product.price) }}</router-link></td>
             <td><router-link :to="`/products/${product._id}`">{{ product.stock }}</router-link></td>
           </tr>
         </tbody>
@@ -87,6 +87,9 @@
           this.page -= 1;
           this.fetchProducts();
         }
+      },
+      formatPrice(value) {
+        return `R$ ${value.toFixed(2)}`;
       }
     },
     mounted() {
