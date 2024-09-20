@@ -2,6 +2,16 @@
 <template>
   <div class="super">
     <div class="product-table-container">
+
+      <div class="search">
+        <input 
+        type="text"
+          v-model="filterName"
+          @input="fetchProducts"
+          placeholder="Buscar Produto"       
+        />
+      </div>
+
       <table class="product-table">
         <thead>
           <tr>
@@ -41,6 +51,7 @@
         page: 1,
         limit: 10,
         totalProducts: 0,
+        filterName: ''
       };
     },
     computed: {
@@ -54,7 +65,8 @@
           const response = await api.get("/products", {
             params: {
               page: this.page,
-              limit: this.limit
+              limit: this.limit,
+              name: this.filterName
             }
           });
           this.products = response.data.products;
@@ -143,5 +155,10 @@
 
   .pagination span {
     margin: 20px;
+  }
+
+  .search {
+    margin-block: 10px;
+    margin-inline: 10px;
   }
 </style>

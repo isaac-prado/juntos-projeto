@@ -9,16 +9,23 @@ export class ProductController {
         try {
             const limit = parseInt(req.query.limit as string) || 10;
             const page = parseInt(req.query.page as string) || 1;
+            const nameFilter = req.query.name as string || '';
 
             const skip = (page - 1) * limit;
+            const result = await database.allDocs({ include_docs: true });
+
+            let filteredProducts = result.rows
+                .map(row => row.doc)
+                .filter((product:any) => 
+                    product.name.toLowerCase().includes(nameFilter.toLowerCase())
+                );
             
-            const result = await database.allDocs({ include_docs: true, limit, skip });
-            const products = result.rows.map(row => row.doc);
+            const paginatedProducts = filteredProducts.slice(skip, skip+limit)
 
             res.status(200).json({
-                products,
+                products: paginatedProducts,
                 meta: {
-                    total: result.total_rows,
+                    total: filteredProducts.length,
                     limit,
                     page
                 }
