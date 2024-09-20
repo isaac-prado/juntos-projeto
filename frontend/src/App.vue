@@ -9,7 +9,7 @@
       @click="showModal"
       class="btn"
       >
-      Inserir Produto
+      Inserir um Novo Produto
     </button>
     
     </div>
@@ -67,6 +67,12 @@ html, body, #app {
   display: flex;
   align-items: center;
   justify-content: space-between;  
+}
+
+button {
+  padding: 10px;
+  font-weight: bold;
+  margin-right: 100px;
 }
 
 </style>

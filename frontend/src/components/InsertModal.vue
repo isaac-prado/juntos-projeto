@@ -2,7 +2,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <header class="modal-header">
-
+            
           <slot name="header">
             Inserir Produto
           </slot>
@@ -16,10 +16,9 @@
           </button>
         </header>
   
-        <section class="modal-body">
-            <form @submit.prevent="addProduct">
-
-                <div class="form-group">
+        <section>
+            <form class="modal-body" @submit.prevent="addProduct">
+                <div class="modal-item">
                     <label for="name">Nome do Produto</label>
                     <input
                     v-model="name"
@@ -29,7 +28,7 @@
                     />
                 </div>
 
-                <div class="form-group">
+                <div class="modal-item">
                     <label for="price">Preço</label>
                     <input
                     v-model.number="price"
@@ -41,7 +40,7 @@
                     />
                 </div>
 
-                <div class="form-group">
+                <div class="modal-item">
                     <label for="stock">Estoque</label>
                     <input
                     v-model.number="stock"
@@ -53,7 +52,7 @@
                 </div>
 
                 <button
-                    class="btn-insert"
+                    class="modal-item"
                     type="submit"
                 >
                     Adicionar Produto
@@ -120,12 +119,14 @@ export default {
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    border-radius: 8px;
   }
 
-  .modal-header, .modal-footer {
+  .modal-header {
     padding: 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .modal-header {
@@ -137,12 +138,10 @@ export default {
 
   .modal-body {
     position: flex;
-    padding: 2rem 5rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 3rem;
     color: black;
-  }
-
-  .form-group {
-    padding-top: 20px;
   }
 
   input {
@@ -152,13 +151,12 @@ export default {
     box-sizing: border-box;
   }
 
-  form button {
-    align-items: center;
-    justify-items: center;
-    margin-top: 15px;
+  .modal-item {
+    margin-bottom: 30px;
   }
 
-  .btn-close, .btn-insert {
-    font-weight: bold;
-  }  
+  .btn-close {
+    padding: 4px;
+  }
+
 </style>

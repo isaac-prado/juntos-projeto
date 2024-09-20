@@ -1,24 +1,26 @@
 */ eslint-disable prettier/prettier /*
 <template>
-  <div class="product-table-container">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>NOME</th>
-          <th>PREÇO</th>
-          <th>ESTOQUE</th>
-        </tr>
-      </thead>
+  <div class="super">
+    <div class="product-table-container">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>NOME</th>
+            <th>PREÇO</th>
+            <th>ESTOQUE</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
-          <td>{{ product.stock }}</td>
-        </tr>
-      </tbody>
+        <tbody>
+          <tr v-for="product in products" :key="product.id">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+          </tr>
+        </tbody>
 
-    </table>
+      </table>
+    </div>
   </div>
 </template>
   
@@ -50,14 +52,17 @@
   </script>
 
 <style scoped>
+  .super {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
   .product-table-container {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    
-    justify-content: center;
-    align-items: center
   }
 
   .product-table {
